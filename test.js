@@ -1,2 +1,3 @@
-import { whatWeWant } from './index.js';
-console.log(whatwewant);
+var { whatWeWant } = require('./index.js');
+console.log(whatWeWant);
+

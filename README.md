@@ -11,11 +11,11 @@ I pledge that this module, to the best of my knowledge and skills, does not do a
 In your main file simply include the module :
 
 
-#### ES6 Example useage
+#### Example usage
 
 ```js
 
-import { whatWeWant } from 'peacenotwar';
+var { whatWeWant } = require('peacenotwar');
 
 console.log(whatWeWant);
 
@@ -23,15 +23,6 @@ console.log(whatWeWant);
 
 see the example in `test.js`
 
-
-#### ES5 / CJS Example useage
-
-```js
-
-var peacenotwar=require('./index.cjs');
-console.log(peacenotwar.whatWeWant);
-
-```
 
 [![Sponsor RIAEvangelist to help development of node-ipc](https://img.shields.io/static/v1?label=Sponsor%20Me%20On%20Github&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/RIAEvangelist)](https://github.com/sponsors/RIAEvangelist)
 

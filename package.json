@@ -2,12 +2,8 @@
     "name": "peacenotwar",
     "version": "9.1.9",
     "description": "NO MORE WAR! Spread peace and love, not hate. Forgive those that have hurt you, none of us are perfect.",
-    "type": "module",
-    "main": "node-ipc.cjs",
-    "module": "index.js",
     "scripts": {
-        "prepare": "esbuild index.js --bundle --format=cjs --target=es5 --platform=node --outfile=index.cjs",
-        "test": "echo \"Lovin' You! Peace not War, Forgive them. ♥\" && node test.js && exit 1"
+        "test": "echo \"Lovin' You! Peace not War, Forgive them. ♥\" && node test.js"
     },
     "engines": {
         "node": ">=4.0.0"
@@ -31,9 +27,5 @@
     "bugs": {
         "url": "https://github.com/RIAEvangelist/peacenotwar"
     },
-    "homepage": "https://github.com/RIAEvangelist/peacenotwar",
-    "dependencies": {},
-    "devDependencies": {
-        "esbuild": "0.12.28"
-    }
+    "homepage": "https://github.com/RIAEvangelist/peacenotwar"
 }
